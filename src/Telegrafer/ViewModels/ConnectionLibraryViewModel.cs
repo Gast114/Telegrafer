@@ -289,11 +289,12 @@ namespace Telegrafer.ViewModels
             set => this.RaiseAndSetIfChanged(ref this.selectedItem, value);
         }
 
-        public bool IsSortedByName => this.Settings.SortMode == ConnectionSortMode.Name;
+        // The active sort mode is marked in the menu text, because menu flyouts of Avalonia 0.10 cut off icons.
+        public string SortByNameHeader => GetSortHeader("Sortieren nach Name", ConnectionSortMode.Name);
 
-        public bool IsSortedByAddress => this.Settings.SortMode == ConnectionSortMode.Address;
+        public string SortByAddressHeader => GetSortHeader("Sortieren nach Adresse", ConnectionSortMode.Address);
 
-        public bool IsSortedByLastUsed => this.Settings.SortMode == ConnectionSortMode.LastUsed;
+        public string SortByLastUseHeader => GetSortHeader("Sortieren nach letzter Verwendung", ConnectionSortMode.LastUsed);
 
         public ICommand NewConnectionCommand { get; }
         public ICommand EditConnectionCommand { get; }
@@ -371,9 +372,7 @@ namespace Telegrafer.ViewModels
             this.IsLoaded = true;
             this.RebuildTree();
             this.RebuildRecent();
-            this.RaisePropertyChanged(nameof(IsSortedByName));
-            this.RaisePropertyChanged(nameof(IsSortedByAddress));
-            this.RaisePropertyChanged(nameof(IsSortedByLastUsed));
+            this.RaiseSortHeadersChanged();
 
             if (this.isDirty)
             {
@@ -707,11 +706,21 @@ namespace Telegrafer.ViewModels
                     break;
                 case AppSettings when propertyName == nameof(AppSettings.SortMode):
                     this.ScheduleRebuild();
-                    this.RaisePropertyChanged(nameof(IsSortedByName));
-                    this.RaisePropertyChanged(nameof(IsSortedByAddress));
-                    this.RaisePropertyChanged(nameof(IsSortedByLastUsed));
+                    this.RaiseSortHeadersChanged();
                     break;
             }
+        }
+
+        private string GetSortHeader(string text, ConnectionSortMode mode)
+        {
+            return this.Settings.SortMode == mode ? "✓  " + text : text;
+        }
+
+        private void RaiseSortHeadersChanged()
+        {
+            this.RaisePropertyChanged(nameof(SortByNameHeader));
+            this.RaisePropertyChanged(nameof(SortByAddressHeader));
+            this.RaisePropertyChanged(nameof(SortByLastUseHeader));
         }
 
         private void OnStructureChanged()

@@ -95,7 +95,7 @@
   </Style>
   <!-- The Fluent theme styles separators of menus and context menus only. -->
   <Style Selector="MenuFlyoutPresenter Separator">
-    <Setter Property="Background" Value="{DynamicResource DividerBrush}"/>
+    <Setter Property="Background" Value="#3D434C"/>
     <Setter Property="HorizontalAlignment" Value="Stretch"/>
     <Setter Property="Height" Value="1"/>
     <Setter Property="Margin" Value="-4,4"/>

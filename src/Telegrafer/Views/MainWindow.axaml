@@ -85,21 +85,9 @@
                   <MenuItem Header="Neue Verbindung …" Command="{Binding Library.NewConnectionCommand}"/>
                   <MenuItem Header="Neue Gruppe …" Command="{Binding Library.NewGroupCommand}"/>
                   <Separator/>
-                  <MenuItem Header="Sortieren nach Name" Command="{Binding Library.SortCommand}" CommandParameter="{x:Static m:ConnectionSortMode.Name}">
-                    <MenuItem.Icon>
-                      <PathIcon Data="{StaticResource check_icon}" Width="12" Height="12" IsVisible="{Binding Library.IsSortedByName}"/>
-                    </MenuItem.Icon>
-                  </MenuItem>
-                  <MenuItem Header="Sortieren nach Adresse" Command="{Binding Library.SortCommand}" CommandParameter="{x:Static m:ConnectionSortMode.Address}">
-                    <MenuItem.Icon>
-                      <PathIcon Data="{StaticResource check_icon}" Width="12" Height="12" IsVisible="{Binding Library.IsSortedByAddress}"/>
-                    </MenuItem.Icon>
-                  </MenuItem>
-                  <MenuItem Header="Sortieren nach letzter Verwendung" Command="{Binding Library.SortCommand}" CommandParameter="{x:Static m:ConnectionSortMode.LastUsed}">
-                    <MenuItem.Icon>
-                      <PathIcon Data="{StaticResource check_icon}" Width="12" Height="12" IsVisible="{Binding Library.IsSortedByLastUsed}"/>
-                    </MenuItem.Icon>
-                  </MenuItem>
+                  <MenuItem Header="{Binding Library.SortByNameHeader}" Command="{Binding Library.SortCommand}" CommandParameter="{x:Static m:ConnectionSortMode.Name}"/>
+                  <MenuItem Header="{Binding Library.SortByAddressHeader}" Command="{Binding Library.SortCommand}" CommandParameter="{x:Static m:ConnectionSortMode.Address}"/>
+                  <MenuItem Header="{Binding Library.SortByLastUseHeader}" Command="{Binding Library.SortCommand}" CommandParameter="{x:Static m:ConnectionSortMode.LastUsed}"/>
                   <Separator/>
                   <MenuItem Header="Verbindungen importieren …" Command="{Binding Library.ImportCommand}"/>
                   <MenuItem Header="Verbindungen exportieren …" Command="{Binding Library.ExportCommand}"/>
