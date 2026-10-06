@@ -177,7 +177,8 @@ namespace Telegrafer.Tests
 
             Assert.Equal(new[] { "no port" }, invalid);
             Assert.Equal(2, data.Connections.Count);
-            Assert.Equal("192.168.1.10:5000", data.Connections[0].Name);
+            Assert.Equal(string.Empty, data.Connections[0].Name);
+            Assert.Equal("192.168.1.10:5000", data.Connections[0].DisplayName);
             Assert.Equal("192.168.1.10", data.Connections[0].Host);
             Assert.Equal(5000, data.Connections[0].Port);
             Assert.True(data.Connections[0].AddStxEtx);

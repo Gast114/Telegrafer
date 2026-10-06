@@ -199,8 +199,8 @@ namespace Telegrafer.Models
                     continue;
                 }
 
+                // Without a name the address is shown; the user can name the connection later.
                 var connection = settings.CreateConnection();
-                connection.Name = HostAndPort.Format(host, port);
                 connection.Host = host;
                 connection.Port = port;
                 data.Connections.Add(connection);
