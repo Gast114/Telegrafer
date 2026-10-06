@@ -33,6 +33,10 @@ jobs:
       - name: Build the app
         run: dotnet build src/Telegrafer --configuration Release --no-restore
 
+      # Run the unit tests (telegram codec, framing, TCP connection, connection store)
+      - name: Test
+        run: dotnet test src/Telegrafer.Tests --configuration Release
+
       # Publish the application for different OS platforms.
       # ReadyToRun as a regular folder instead of a single file: the single file bundle is one large
       # unsigned executable that virus scanners have to inspect completely on start, while the folder
